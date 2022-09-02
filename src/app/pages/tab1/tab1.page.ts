@@ -10,7 +10,7 @@ import { NewsService } from 'src/app/services/news.service';
 
 export class Tab1Page implements OnInit{
 
-  articles:any[] = [];
+  articles:Article[] = [];
 
   constructor(private newsService:NewsService) {}
 
