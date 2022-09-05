@@ -9,15 +9,20 @@ import { Article } from '../interfaces';
 export class StorageService {
   private _storage: Storage | null = null;
   private _localArticles:Article[]=[];
-
+  
+  get getLocalArticles(){
+    return [...this._localArticles];
+  }
 
   constructor(private storage: Storage) { 
     this.init();
+    
   }
   async init() {
     // If using, define drivers here: await this.storage.defineDriver(/*...*/);
     const storage = await this.storage.create();
     this._storage = storage;
+    await this.loadFavorites();
   }
 
 async saveOrRemoveAricle(article:Article){
@@ -32,4 +37,14 @@ async saveOrRemoveAricle(article:Article){
   }
   this._storage.set('articles',this._localArticles);
 }
+  async loadFavorites(){
+   try {
+    const articles = await this._storage.get('articles');
+    this._localArticles = articles;
+
+   } catch (error) {
+    console.log(error);
+   }
+  }
+
 }
