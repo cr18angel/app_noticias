@@ -3,6 +3,7 @@ import { Article } from 'src/app/interfaces';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { Share } from '@capacitor/share';
 import { ActionSheetController } from '@ionic/angular';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-article',
@@ -15,7 +16,8 @@ export class ArticleComponent implements OnInit {
 
   constructor(
     private iab: InAppBrowser,
-    private actionSheetCtrl: ActionSheetController
+    private actionSheetCtrl: ActionSheetController,
+    private storageService:StorageService
   ) {}
 
   ngOnInit() {}
@@ -59,7 +61,9 @@ export class ArticleComponent implements OnInit {
     });
   }
 
-  onToggleFavorite() {
+ async  onToggleFavorite() {
     console.log('share article');
+    await this.storageService.saveOrRemoveAricle(this.article);
   }
 }
+
