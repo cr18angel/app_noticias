@@ -5,7 +5,24 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<p>prueba</p>
-<app-article [articles]="articles"></app-article>
 
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense" mode="ios">
+    <ion-toolbar>
+      <ion-title size="large">Headers</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+ 
+  <app-articles [articles]="articles" ></app-articles>
+  
+
+
+
+
+  <!-- <ion-infinite-scroll threshold="25%" position="bottom" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más datos...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
 </ion-content>
